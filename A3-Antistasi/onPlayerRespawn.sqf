@@ -244,3 +244,8 @@ else
 	if (hayRHS) then {[player] call A3A_fnc_RHSdress};
 	if (hayACE) then {[] call A3A_fnc_ACEpvpReDress};
 	};
+
+player setUnitTrait ["Medic", true];
+player setUnitTrait ["Engineer", true];
+player enableStamina false;
+player setCustomAimCoef 0.35;

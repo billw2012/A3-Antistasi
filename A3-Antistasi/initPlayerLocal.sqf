@@ -629,3 +629,8 @@ disableSerialization;
 _layer = ["estadisticas"] call bis_fnc_rscLayer;
 _layer cutRsc ["H8erHUD","PLAIN",0,false];
 [] spawn A3A_fnc_statistics;
+
+player setUnitTrait ["Medic", true];
+player setUnitTrait ["Engineer", true];
+player enableStamina false;
+player setCustomAimCoef 0.35;
