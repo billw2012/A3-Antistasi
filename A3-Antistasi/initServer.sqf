@@ -29,6 +29,12 @@ minWeaps = paramsArray select 10; publicVariable "minWeaps";
 civTraffic = paramsArray select 11; publicVariable "civTraffic";
 memberDistance = paramsArray select 13; publicVariable "memberDistance";
 limitedFT = if (paramsArray select 14 == 1) then {true} else {false}; publicVariable "limitedFT";
+
+// Revive parameters
+easyRevive = if (paramsArray select 15 == 1) then {false} else {true}; publicVariable "easyRevive";
+bleedoutTimeMul = if (paramsArray select 15 == 1) then {1} else {2}; publicVariable "bleedoutTimeMul";
+reviveTimeMul = if (paramsArray select 15 == 1) then {1} else {0.5}; publicVariable "reviveTimeMul";
+
 _nul = call compile preprocessFileLineNumbers "initVar.sqf";
 initVar = true; publicVariable "initVar";
 savingServer = true;

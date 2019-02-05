@@ -62,6 +62,7 @@ class CfgSounds
 
 class Params
 {
+    // 0
     class loadSave
     {
         title = "Load last Persistent Save"; // Param name visible in the list
@@ -70,6 +71,7 @@ class Params
         default = 1; // Default value; must be listed in 'values' array, otherwise 0 is used
         // Default values that are not whole numbers do not work. Param will default to 0 (or 1 if defined)
     };
+    // 1
     class gameMode
     {
         title = "Game Mode"; // Param name visible in the list
@@ -78,6 +80,7 @@ class Params
         default = 1; // Default value; must be listed in 'values' array, otherwise 0 is used
         // Default values that are not whole numbers do not work. Param will default to 0 (or 1 if defined)
     };
+    // 2
     class autoSave
     {
         title = "Enable Autosave (every hour)"; // Param name visible in the list
@@ -86,6 +89,7 @@ class Params
         default = 1; // Default value; must be listed in 'values' array, otherwise 0 is used
         // Default values that are not whole numbers do not work. Param will default to 0 (or 1 if defined)
     };
+    // 3
     class membership
     {
         title = "Enable Server Membership";
@@ -95,6 +99,7 @@ class Params
         //function = "BIS_fnc_paramDaytime"; // (Optional) [[Functions_Library_(Arma_3)|Function]] [[call]]ed when player joins, selected value is passed as an argument
         //isGlobal = 1; // (Optional) 1 to execute script / function locally for every player who joins, 0 to do it only on server
     };
+    // 4
     class switchComm
     {
         title = "Enable Commander Switch (highest ranked player)";
@@ -103,6 +108,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 5
     class tkPunish
     {
         title = "Enable Teamkill Punish";
@@ -111,6 +117,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 6
     class mRadius
     {
         title = "Distance from HQ for Sidemissions";
@@ -119,6 +126,7 @@ class Params
         default = 4000;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 7
     class allowPvP
     {
         title = "Allow PvP Slots";
@@ -127,6 +135,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 8
     class pMarkers
     {
         title = "Allow Friendly Player Markers";
@@ -135,6 +144,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 9
     class AISkill
     {
         title = "AI Skill";
@@ -143,6 +153,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 10
     class unlockItem
     {
         title = "Number of the same weapons required to unlock";
@@ -150,6 +161,7 @@ class Params
         default = 25;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 11
     class civTraffic
     {
         title = "Rate of Civ Traffic";
@@ -158,6 +170,7 @@ class Params
         default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 12
     class memberSlots
     {
         title = "Percentage of Reserved Slots for Members";
@@ -166,6 +179,7 @@ class Params
         default = 20;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 13
     class memberDistance
     {
         title = "Max distance non members can be from the closest member or HQ (they will be teleported to HQ after some timeout)";
@@ -174,6 +188,7 @@ class Params
         default = 5000;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
+    // 14
     class allowFT
     {
         title = "Limited Fast Travel";
@@ -181,7 +196,17 @@ class Params
         texts[] = {"No","Yes"};
         default = 1;
     };
+    // 15
+    class reviveSystemDifficulty
+    {
+        title = "Revive system difficulty (Easy means: revive doesn't require items or skills, bleedout time is longer, time to revive is shorter)";
+        values[] = {0, 1};
+        texts[] = {"Easier", "Normal"};
+        default = 1;
+    };
 };
+
+
 
 class CfgIdentities
 {
