@@ -179,14 +179,14 @@ if (!_esFIA) then
 		{
 		if (_rnd > prestigeNATO) then
 			{
-			_vehPool = _vehPool - [vehNATOTank];
+			_vehPool = _vehPool - vehNATOAllTanks;
 			};
 		}
 	else
 		{
 		if (_rnd > prestigeCSAT) then
 			{
-			_vehPool = _vehPool - [vehCSATTank];
+			_vehPool = _vehPool - vehCSATAllTanks;
 			};
 		};
 	if (count _vehPool == 0) then {if (_lado == malos) then {_vehPool = vehNATOTrucks} else {_vehPool = vehCSATTrucks}};
