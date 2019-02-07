@@ -71,3 +71,6 @@ flagNATOmrk = "flag_USA";//ok
 lamparaMalos = "acc_flashlight";
 nameMalos = "USAF";
 if (isServer) then {"NATO_carrier" setMarkerText "USMC Carrier"};
+
+rifleTier1NATO = "rhsusf_weap_MP7A2";
+rifleTier2NATO = "rhs_weap_hk416d10";

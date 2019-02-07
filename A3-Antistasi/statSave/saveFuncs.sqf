@@ -59,8 +59,8 @@ fn_SetStat =
 			if !(isMultiplayer) then
 				{
 				skillMult = _varValue;
-				if (skillMult == 0.5) then {minWeaps = 15};
-				if (skillMult == 2) then {minWeaps = 40};
+				if (skillMult >= 0.5) then {minWeaps = 15};
+				if (skillMult >= 2) then {minWeaps = 40};
 				};
 			};
 		if(_varName == 'gameMode') then

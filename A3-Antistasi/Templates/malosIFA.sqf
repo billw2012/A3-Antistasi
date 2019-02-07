@@ -68,3 +68,6 @@ nameMalos = "Wehrmacht";
 if (isServer) then {"NATO_carrier" setMarkerText "Wehrmacht Reinforcements"};
 
 {cascos pushBackUnique (getUnitLoadout _x select 6)} forEach NATOSquad;
+
+rifleTier1NATO = "LIB_MP40";
+rifleTier2NATO = "LIB_MP44";

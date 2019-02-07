@@ -73,3 +73,6 @@ flagNATOmrk = "rhs_flag_insurgents";//ok
 lamparaMalos = "rhs_acc_2dpZenit";
 nameMalos = "ChDKZ";
 if (isServer) then {"NATO_carrier" setMarkerText "ChDKZ Carrier"};
+
+rifleTier1NATO = "rhs_weap_akm";
+rifleTier2NATO = "rhs_weap_akm_gp25";

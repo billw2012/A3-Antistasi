@@ -66,3 +66,6 @@ flagNATOmrk = "flag_AltisColonial";
 
 nameMalos = "AAF";
 if (isServer) then {"NATO_carrier" setMarkerText "AAF Carrier"};
+
+rifleTier1NATO = "arifle_Mk20_F";
+rifleTier2NATO = "arifle_Mk20_GL_F";

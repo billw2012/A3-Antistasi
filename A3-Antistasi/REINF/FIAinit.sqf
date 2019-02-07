@@ -8,7 +8,7 @@ _unit setVariable ["spawner",true,true];
 _unit allowFleeing 0;
 _tipo = typeOf _unit;
 //_skill = if (_tipo in sdkTier1) then {(skillFIA * 0.2)} else {if (_tipo in sdkTier2) then {0.1 + (skillFIA * 0.2)} else {0.1 + (skillFIA * 0.2)}};
-_skill = skillFIA * 0.05 * skillMult;
+_skill = skillFIA * 0.05;
 if (!activeGREF) then {if (not((uniform _unit) in uniformsSDK)) then {[_unit] call A3A_fnc_reDress}};
 
 if ((!isMultiplayer) and (leader _unit == theBoss)) then {_skill = _skill + 0.1};

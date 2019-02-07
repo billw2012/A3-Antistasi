@@ -67,3 +67,6 @@ flagNATOmrk = "flag_NATO";
 
 nameMalos = "NATO";
 if (isServer) then {"NATO_carrier" setMarkerText "NATO Carrier"};
+
+rifleTier1NATO = "arifle_MX_F";
+rifleTier2NATO = "arifle_AK12_F";
