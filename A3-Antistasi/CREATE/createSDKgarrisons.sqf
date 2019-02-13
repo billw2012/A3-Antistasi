@@ -72,7 +72,6 @@ _estaticas = staticsToSave select {_x distance _posicion < _size};
 
 _garrison = [];
 _garrison = _garrison + (garrison getVariable [_marcador,[]]);
-_grupo = createGroup buenos;
 _grupoEst = createGroup buenos;
 _grupoMort = createGroup buenos;
 {
@@ -109,10 +108,14 @@ if (staticCrewBuenos in _garrison) then
 	} forEach (_garrison select {_x == staticCrewBuenos});
 	_garrison = _garrison - [staticCrewBuenos];
 	};
+
+// Create the remaining garrison that weren't assigned to statics
+_grupo = createGroup buenos;
 _garrison = _garrison call A3A_fnc_garrisonReorg;
 _tam = count _garrison;
 _cuenta = 0;
 _cuentaGrupo = 0;
+_garrisonGroups = 0;
 while {(spawner getVariable _marcador != 2) and (_cuenta < _tam)} do
 	{
 	_tipo = _garrison select _cuenta;
@@ -122,26 +125,35 @@ while {(spawner getVariable _marcador != 2) and (_cuenta < _tam)} do
 	_soldados pushBack _unit;
 	_cuenta = _cuenta + 1;
 	sleep 0.5;
+	_cuentaGrupo = _cuentaGrupo + 1;
+
+	// Split into groups of 8
 	if (_cuentaGrupo == 8) then
 		{
-		_grupo = createGroup buenos;
+		// First group garrison upstairs positions
+		if (_garrisonGroups == 0) then {
+			_nul = [leader _grupo, _marcador, "AWARE","SPAWNED","RANDOMUP","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";
+		} else {
+			_nul = [leader _grupo, _marcador, "SAFE","SPAWNED","RANDOM","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";
+		};
+		// Add the group to the stack and create a new one
 		_grupos pushBack _grupo;
+		_grupo = createGroup buenos;
 		_cuentaGrupo = 0;
+		_garrisonGroups = _garrisonGroups + 1;
 		};
 	};
 
-for "_i" from 0 to (count _grupos) - 1 do
-	{
-	_grupo = _grupos select _i;
-	if (_i == 0) then
-		{
-		_nul = [leader _grupo, _marcador, "SAFE","SPAWNED","RANDOMUP","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";
-		}
-	else
-		{
+if (_cuentaGrupo > 0) then {
+	// First group garrison upstairs positions
+	if (_garrisonGroups == 0) then {
+		_nul = [leader _grupo, _marcador, "AWARE","SPAWNED","RANDOMUP","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";
+	} else {
 		_nul = [leader _grupo, _marcador, "SAFE","SPAWNED","RANDOM","NOVEH2","NOFOLLOW"] execVM "scripts\UPSMON.sqf";
-		};
 	};
+	_grupos pushBack _grupo;
+};
+
 waitUntil {sleep 1; (spawner getVariable _marcador == 2)};
 
 {
