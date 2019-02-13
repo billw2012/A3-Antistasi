@@ -402,7 +402,7 @@ smallCApos = [];
 bigAttackInProgress = false;
 chopForest = false;
 distanceForAirAttack = 10000;
-distanceForLandAttack = if (hayIFA) then {5000} else {3000};
+distanceForLandAttack = 6000; //if (hayIFA) then {5000} else {3000};
 
 if (worldName == "Tanoa") then {
     roadsMrk = ["road","road_1","road_2","road_3","road_4","road_5","road_6","road_7","road_8","road_9","road_10","road_11","road_12","road_13","road_14","road_15","road_16"];

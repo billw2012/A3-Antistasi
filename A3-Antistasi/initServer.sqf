@@ -32,8 +32,8 @@ limitedFT = if (paramsArray select 14 == 1) then {true} else {false}; publicVari
 
 // Revive parameters
 easyRevive = if (paramsArray select 15 == 1) then {false} else {true}; publicVariable "easyRevive";
-bleedoutTimeMul = if (paramsArray select 15 == 1) then {1} else {2}; publicVariable "bleedoutTimeMul";
-reviveTimeMul = if (paramsArray select 15 == 1) then {1} else {0.5}; publicVariable "reviveTimeMul";
+bleedoutTimeMul = if (paramsArray select 15 == 1) then {1} else {4}; publicVariable "bleedoutTimeMul";
+reviveTimeMul = if (paramsArray select 15 == 1) then {1} else {0.25}; publicVariable "reviveTimeMul";
 
 _nul = call compile preprocessFileLineNumbers "initVar.sqf";
 initVar = true; publicVariable "initVar";
