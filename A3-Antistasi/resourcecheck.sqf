@@ -149,7 +149,7 @@ while {true} do
 	publicVariable "cuentaCA";
 	if ((cuentaCA == 0)/* and (diag_fps > minimoFPS)*/) then
 		{
-		[1200] remoteExec ["A3A_fnc_timingCA",2];
+		[14400] remoteExec ["A3A_fnc_timingCA",2];
 		if (!bigAttackInProgress) then
 			{
 			_script = [] spawn A3A_fnc_ataqueAAF;
