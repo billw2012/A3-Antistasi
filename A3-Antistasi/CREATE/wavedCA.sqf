@@ -655,7 +655,8 @@ while {(_waves > 0)} do
 
 	if (!_SDKShown) then
 		{
-		if !([true] call A3A_fnc_FIAradio) then {sleep 100};
+		sleep 30;
+		// if !([true] call A3A_fnc_FIAradio) then {sleep 100};
 		_SDKShown = true;
 		["TaskSucceeded", ["", "Attack Destination Updated"]] remoteExec ["BIS_fnc_showNotification",buenos];
 		["AtaqueAAF",[format ["%2 Is attacking from the %1. Intercept them or we may loose a sector",_nombreorig,_nombreEny],format ["%1 Attack",_nombreEny],_mrkDestino],getMarkerPos _mrkDestino,"CREATED"] call A3A_fnc_taskUpdate;

@@ -198,7 +198,7 @@ class Params
         title = "Limited Fast Travel";
         values[] = {0,1};
         texts[] = {"No","Yes"};
-        default = 1;
+        default = 0;
     };
     // 15
     class reviveSystemDifficulty
