@@ -6,13 +6,15 @@ private ["_texto"];
 scriptName "resourcecheck";
 _cuentaSave = 3600;
 
+private _powerScaling = 0.2;
+
 while {true} do
 	{
 	//sleep 600;//600
 	nextTick = time + 600;
 	waitUntil {sleep 15; time >= nextTick};
 	if (isMultiplayer) then {waitUntil {sleep 10; isPlayer theBoss}};
-	_suppBoost = 1+ ({lados getVariable [_x,sideUnknown] == buenos} count puertos);
+	_suppBoost = 1 + ({lados getVariable [_x,sideUnknown] == buenos} count puertos);
 	_recAddSDK = 25;//0
 	_hrAddBLUFOR = 0;//0
 	_popFIA = 0;
@@ -49,9 +51,9 @@ while {true} do
 		_hrAddCiudad = (_numciv * (_prestigeSDK / 10000));///20000 originalmente
 		switch (_power) do
 			{
-			case buenos: {[-1,_suppBoost,_ciudad] spawn A3A_fnc_citySupportChange};
-			case malos: {[1,-1,_ciudad] spawn A3A_fnc_citySupportChange};
-			case muyMalos: {[-1,-1,_ciudad] spawn A3A_fnc_citySupportChange};
+			case buenos: {[-_powerScaling,_suppBoost*_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
+			case malos: {[_powerScaling,-_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
+			case muyMalos: {[-_powerScaling,-_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
 			};
 		if (lados getVariable [_ciudad,sideUnknown] == malos) then
 			{
