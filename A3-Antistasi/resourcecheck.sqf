@@ -51,7 +51,7 @@ while {true} do
 		_hrAddCiudad = (_numciv * (_prestigeSDK / 10000));///20000 originalmente
 		switch (_power) do
 			{
-			case buenos: {[-_powerScaling,_suppBoost*_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
+			case buenos: {};//{[-_powerScaling,0,_ciudad] spawn A3A_fnc_citySupportChange};
 			case malos: {[_powerScaling,-_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
 			case muyMalos: {[-_powerScaling,-_powerScaling,_ciudad] spawn A3A_fnc_citySupportChange};
 			};
@@ -63,8 +63,10 @@ while {true} do
 		};
 	_recAddSDK = _recAddSDK + _recAddCiudadSDK;
 	_hrAddBLUFOR = _hrAddBLUFOR + _hrAddCiudad;
+
 	// revuelta civil!!
-	if ((_prestigeNATO < _prestigeSDK) and (lados getVariable [_ciudad,sideUnknown] == malos)) then
+	// Need to exceed NATO support by 20, and have greater support than 50 to flip the city.
+	if ((_prestigeNATO < (_prestigeSDK - 20)) and (_prestigeSDK > 50) and (lados getVariable [_ciudad,sideUnknown] == malos)) then
 		{
 		["TaskSucceeded", ["", format ["%1 joined %2",[_ciudad, false] call A3A_fnc_fn_location,nameBuenos]]] remoteExec ["BIS_fnc_showNotification",buenos];
 		lados setVariable [_ciudad,buenos,true];
@@ -114,19 +116,28 @@ while {true} do
 		if (not(_recurso in destroyedCities)) then {_recAddSDK = _recAddSDK + (300 * _bonusFIA)};
 		};
 	} forEach recursos;
-	_hrAddBLUFOR = (round _hrAddBLUFOR);
-	_recAddSDK = (round _recAddSDK);
 
+	// Apply HR growth scaling, faster below 5, slower above it.
+	_hrAddBLUFOR = sqrt (5 * _hrAddBLUFOR);
+	_hrAddBLUFOR = ceil _hrAddBLUFOR;
+
+	// Cap total HR at support * 0.1
+	private _hr = server getVariable "hr";
+	_hrAddBLUFOR = 0 max (_hrAddBLUFOR min (_popFIA * 0.1 - _hr));
+	_hr = _hr + _hrAddBLUFOR;
+	server setVariable ["hr",_hr,true];
+	
+	_recAddSDK = ceil _recAddSDK;
+	_recAddSDK = _recAddSDK + (server getVariable "resourcesFIA");
+	server setVariable ["resourcesFIA",_recAddSDK,true];
+	
 	_texto = format ["<t size='0.6' color='#C1C0BB'>Taxes Income.<br/> <t size='0.5' color='#C1C0BB'><br/>Manpower: +%1<br/>Money: +%2 €",_hrAddBLUFOR,_recAddSDK];
 	[] call A3A_fnc_FIAradio;
 	//_updated = false;
 	_updated = [] call A3A_fnc_arsenalManage;
 	if (_updated != "") then {_texto = format ["%1<br/>Arsenal Updated<br/><br/>%2",_texto,_updated]};
 	[petros,"taxRep",_texto] remoteExec ["A3A_fnc_commsMP",[buenos,civilian]];
-	_hrAddBLUFOR = _hrAddBLUFOR + (server getVariable "hr");
-	_recAddSDK = _recAddSDK + (server getVariable "resourcesFIA");
-	server setVariable ["hr",_hrAddBLUFOR,true];
-	server setVariable ["resourcesFIA",_recAddSDK,true];
+
 	bombRuns = bombRuns + (({lados getVariable [_x,sideUnknown] == buenos} count aeropuertos) * 0.25);
 	[petros,"taxRep",_texto] remoteExec ["A3A_fnc_commsMP",[buenos,civilian]];
 	[] call A3A_fnc_economicsAI;
@@ -151,7 +162,7 @@ while {true} do
 	publicVariable "cuentaCA";
 	if ((cuentaCA == 0)/* and (diag_fps > minimoFPS)*/) then
 		{
-		[14400] remoteExec ["A3A_fnc_timingCA",2];
+		[3600] remoteExec ["A3A_fnc_timingCA",2];
 		if (!bigAttackInProgress) then
 			{
 			_script = [] spawn A3A_fnc_ataqueAAF;
