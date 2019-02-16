@@ -187,7 +187,7 @@ else
 sleep 15;
 //[muyMalos,[civilian,1]] remoteExec ["setFriend",2];
 _nul = [0,"AtaqueAAF"] spawn A3A_fnc_borrarTask;
-[7200] remoteExec ["A3A_fnc_timingCA",2];
+[3600] remoteExec ["A3A_fnc_timingCA",2];
 {
 _veh = _x;
 if (!([distanciaSPWN,1,_veh,buenos] call A3A_fnc_distanceUnits) and (({_x distance _veh <= distanciaSPWN} count (allPlayers - (entities "HeadlessClient_F"))) == 0)) then {deleteVehicle _x};

@@ -1,0 +1,2 @@
+OPF progress too fast: slow down attacks between OPF and BLUF. Slow down simulated battles significantly.
+DONE: Make min diff requirement to capture town.
