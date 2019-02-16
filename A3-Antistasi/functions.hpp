@@ -49,6 +49,7 @@ class A3A
         class puestoDialog {file="puestoDialog.sqf";};
         class radioCheck {file="radioCheck.sqf";};
         class rebuildAssets {file="rebuildAssets.sqf";};
+        class resetCities {file="resetCities.sqf";};
         class resourceCheckSkipTime {file="resourcecheckSkipTime.sqf";};
         class resourcesFIA {file="resourcesFIA.sqf";};
         class returnMuzzle {file="returnMuzzle.sqf";};

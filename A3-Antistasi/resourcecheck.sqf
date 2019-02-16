@@ -123,15 +123,20 @@ while {true} do
 
 	// Cap total HR at support * 0.1
 	private _hr = server getVariable "hr";
-	_hrAddBLUFOR = 0 max (_hrAddBLUFOR min (_popFIA * 0.1 - _hr));
+	private _hrCap = _popFIA * 0.1;
+	_hrAddBLUFOR = 0 max (_hrAddBLUFOR min (_hrCap - _hr));
 	_hr = _hr + _hrAddBLUFOR;
 	server setVariable ["hr",_hr,true];
 	
+	// Apply resource increase
 	_recAddSDK = ceil _recAddSDK;
-	_recAddSDK = _recAddSDK + (server getVariable "resourcesFIA");
-	server setVariable ["resourcesFIA",_recAddSDK,true];
+	private _rec = server getVariable "resourcesFIA";
+	_rec =  _rec + _recAddSDK;
+	server setVariable ["resourcesFIA",_rec,true];
+
+	private _hrString = if (_hr == _hrCap) then { "Full" } else { _hrAddBLUFOR };
+	_texto = format ["<t size='0.6' color='#C1C0BB'>Taxes Income.<br/> <t size='0.5' color='#C1C0BB'><br/>Manpower: +%1<br/>Money: +%2 €",_hrString,_recAddSDK];
 	
-	_texto = format ["<t size='0.6' color='#C1C0BB'>Taxes Income.<br/> <t size='0.5' color='#C1C0BB'><br/>Manpower: +%1<br/>Money: +%2 €",_hrAddBLUFOR,_recAddSDK];
 	[] call A3A_fnc_FIAradio;
 	//_updated = false;
 	_updated = [] call A3A_fnc_arsenalManage;

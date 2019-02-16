@@ -283,14 +283,14 @@ fn_SetStat =
 				}
 			else
 				{
-				fuego setPos (_varValue select 1);
+				fuego setPosATL (_varValue select 1);
 				caja setDir ((_varValue select 2) select 0);
-				caja setPos ((_varValue select 2) select 1);
+				caja setPosATL ((_varValue select 2) select 1);
 				mapa setDir ((_varValue select 3) select 0);
-				mapa setPos ((_varValue select 3) select 1);
-				bandera setPos (_varValue select 4);
+				mapa setPosATL ((_varValue select 3) select 1);
+				bandera setPosATL (_varValue select 4);
 				cajaVeh setDir ((_varValue select 5) select 0);
-				cajaVeh setPos ((_varValue select 5) select 1);
+				cajaVeh setPosATL ((_varValue select 5) select 1);
 				};
 			{_x setPos _posHQ} forEach (playableUnits select {side _x == buenos});
 			};
@@ -302,7 +302,7 @@ fn_SetStat =
 				_posVeh = _varvalue select _i select 1;
 				_dirVeh = _varvalue select _i select 2;
 				_veh = createVehicle [_tipoVeh,[0,0,1000],[],0,"NONE"];
-				_veh setPos _posVeh;
+				_veh setPosATL _posVeh;
 				_veh setDir _dirVeh;
 				_veh setVectorUp surfaceNormal (getPos _veh);
 				if ((_veh isKindOf "StaticWeapon") or (_veh isKindOf "Building")) then
