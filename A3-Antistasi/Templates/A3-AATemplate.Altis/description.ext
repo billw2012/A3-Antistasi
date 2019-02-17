@@ -127,7 +127,7 @@ class Params
         title = "Distance from HQ for Sidemissions";
         values[] = {4000,8000,12000};
         // When 'texts' are missing, values will be displayed directly instead
-        default = 2500;
+        default = 4000;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
     // 7
@@ -154,7 +154,7 @@ class Params
         title = "AI Skill";
         values[] = {0.5,1,2};
         texts[] = {"Easy","Normal","Hard"};
-        default = 0.5;
+        default = 1;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
     // 10
@@ -162,7 +162,7 @@ class Params
     {
         title = "Number of the same weapons required to unlock";
         values[] = {15,25,40};
-        default = 15;
+        default = 25;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
     // 11
