@@ -142,7 +142,7 @@ for "_i" from 0 to round random 2 do
 	{
 	if ([vehCSATPlane] call A3A_fnc_vehAvailable) then
 		{
-		_nul = [_mrkdestino,muyMalos,"NAPALM"] spawn A3A_fnc_airstrike;
+		_nul = [_mrkdestino,muyMalos,"CLUSTER"] spawn A3A_fnc_airstrike;
 		sleep 30;
 		};
 	};

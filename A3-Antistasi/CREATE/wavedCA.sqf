@@ -603,12 +603,12 @@ while {(_waves > 0)} do
 								}
 							else
 								{
-								_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER","NAPALM"]] spawn A3A_fnc_airstrike;
+								_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER"]] spawn A3A_fnc_airstrike;
 								};
 							}
 						else
 							{
-							_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER","NAPALM"]] spawn A3A_fnc_airstrike;
+							_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER"]] spawn A3A_fnc_airstrike;
 							};
 						sleep 30;
 						};
@@ -639,12 +639,12 @@ while {(_waves > 0)} do
 								}
 							else
 								{
-								_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER","NAPALM"]] spawn A3A_fnc_airstrike;
+								_nul = [_mrkdestino,_lado,selectRandom ["HE","CLUSTER"]] spawn A3A_fnc_airstrike;
 								};
 							}
 						else
 							{
-							_nul = [_posDestino,_lado,selectRandom ["HE","CLUSTER","NAPALM"]] spawn A3A_fnc_airstrike;
+							_nul = [_posDestino,_lado,selectRandom ["HE","CLUSTER"]] spawn A3A_fnc_airstrike;
 							};
 						sleep 30;
 						};

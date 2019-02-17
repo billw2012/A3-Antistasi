@@ -62,7 +62,7 @@ if ((!_esMarcador) and (_typeOfAttack != "Air") and (!_super) and ({lados getVar
 		_amigos = if (_lado == malos) then {allUnits select {(_x distance _posDestino < 200) and (alive _x) and ((side (group _x) == _lado) or (side (group _x) == civilian))}} else {allUnits select {(_x distance _posDestino < 100) and ([_x] call A3A_fnc_canFight) and (side (group _x) == _lado)}};
 		if (count _amigos == 0) then
 			{
-			_tipo = "NAPALM";
+			_tipo = "CLUSTER";
 			{
 			if (vehicle _x isKindOf "Tank") then
 				{
