@@ -16,7 +16,7 @@ if (typeName _pos == typeName "") then {
 	_cities = [];
 	{
 		private _distKm = ((getMarkerPos _x) distance _pos) / 1000;
-		private _effect = 1 min (2/(1 + _distKm));
+		private _effect = 0.5 * (1 min (2/(1 + _distKm)));
 		// This effect terminates at about 4km
 		if (_effect > 0.2) then {
 			_cities pushback [_x, _effect];

@@ -6,7 +6,7 @@ private ["_texto"];
 scriptName "resourcecheck";
 _cuentaSave = 3600;
 
-private _powerScaling = 0.2;
+private _powerScaling = 1;
 
 while {true} do
 	{

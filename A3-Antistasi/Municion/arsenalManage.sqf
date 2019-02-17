@@ -20,11 +20,10 @@ _nv = (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_NVGS) select {_x select 1 !
 _check = false;
 {
 if (_x select 1 >= minWeaps) then
-	{
+{
 	_arma = _x select 0;
-	// Assume minWeaps < 25 setting means "easy arsenal mode"
-	if ((minWeaps < 25) or !(_arma in mlaunchers)) then
-		{
+	if !(_arma in mlaunchers) then
+	{
 		_magazine = (getArray (configFile / "CfgWeapons" / _arma / "magazines") select 0);
 		if (!isNil "_magazine") then
 			{
