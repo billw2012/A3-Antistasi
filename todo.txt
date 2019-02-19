@@ -1,0 +1,4 @@
+Remove drones in RHS.
+Round display for HR down, but keep it fractional internally, display max cap as well.
+Add can opener script to get crew out of tank?
+Increase timer for attack.
