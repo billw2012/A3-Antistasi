@@ -1,4 +1,5 @@
-Remove drones in RHS.
-Round display for HR down, but keep it fractional internally, display max cap as well.
-Add can opener script to get crew out of tank?
-Increase timer for attack.
+DONE Remove drones in RHS.
+DONE Fix orientation of statics spawned in base.
+DONE Round display for HR down, but keep it fractional internally, display max cap as well.
+DONE Add can opener script to get crew out of tank?
+DONE Increase timer for attack.

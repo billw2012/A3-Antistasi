@@ -304,11 +304,13 @@ fn_SetStat =
 				_veh = createVehicle [_tipoVeh,[0,0,1000],[],0,"NONE"];
 				_veh setPosATL _posVeh;
 				_veh setDir _dirVeh;
-				_veh setVectorUp surfaceNormal (getPos _veh);
-				if ((_veh isKindOf "StaticWeapon") or (_veh isKindOf "Building")) then
-					{
+				// Only level out static weapons, buildings should stay level.
+				if (_veh isKindOf "StaticWeapon") then {
+					_veh setVectorUp surfaceNormal (getPosATL _veh);
+				};
+				if ((_veh isKindOf "StaticWeapon") or (_veh isKindOf "Building")) then {
 					staticsToSave pushBack _veh;
-					};
+				};
 				[_veh] call A3A_fnc_AIVEHinit;
 				};
 			publicVariable "staticsToSave";

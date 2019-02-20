@@ -634,3 +634,6 @@ player setUnitTrait ["Medic", true];
 player setUnitTrait ["Engineer", true];
 player enableStamina false;
 player setCustomAimCoef 0.35;
+
+_nul = [] execVM "Scripts\init_flipAction.sqf";
+_nul = [] execVM "Scripts\init_canOpener.sqf";

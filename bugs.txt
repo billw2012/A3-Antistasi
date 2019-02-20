@@ -9,3 +9,6 @@ Auto heal causes units to try and mount into cars?
 Often can't load supply crate easily, need to move vehicle all over the place, bump the crate etc.
 Auto rearmers can get stuck in rearm pose frozen.
 Sometimes revived units are stuck lying down unable to move even though revived.
+
+Flag moves down.
+Placement of 

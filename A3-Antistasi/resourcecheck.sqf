@@ -119,14 +119,15 @@ while {true} do
 
 	// Apply HR growth scaling, faster below 5, slower above it.
 	_hrAddBLUFOR = sqrt (5 * _hrAddBLUFOR);
-	_hrAddBLUFOR = ceil _hrAddBLUFOR;
+	_hrAddBLUFOR = _hrAddBLUFOR;
 
 	// Cap total HR at support * 0.1
 	private _hr = server getVariable "hr";
-	private _hrCap = _popFIA * 0.1;
+	private _hrCap = ceil(_popFIA * 0.1);
 	_hrAddBLUFOR = 0 max (_hrAddBLUFOR min (_hrCap - _hr));
-	_hr = _hr + _hrAddBLUFOR;
-	server setVariable ["hr",_hr,true];
+	private _new_hr = _hr + _hrAddBLUFOR;
+	server setVariable ["hr",_new_hr,true];
+	server setVariable ["hrCap",_hrCap,true];
 	
 	// Apply resource increase
 	_recAddSDK = ceil _recAddSDK;
@@ -134,7 +135,7 @@ while {true} do
 	_rec =  _rec + _recAddSDK;
 	server setVariable ["resourcesFIA",_rec,true];
 
-	private _hrString = if (_hr == _hrCap) then { "Full" } else { _hrAddBLUFOR };
+	private _hrString = if (_new_hr >= _hrCap) then { "Full" } else { floor(_new_hr - _hr) };
 	_texto = format ["<t size='0.6' color='#C1C0BB'>Taxes Income.<br/> <t size='0.5' color='#C1C0BB'><br/>Manpower: +%1<br/>Money: +%2 €",_hrString,_recAddSDK];
 	
 	[] call A3A_fnc_FIAradio;

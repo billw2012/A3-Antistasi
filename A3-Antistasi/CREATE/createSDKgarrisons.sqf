@@ -119,7 +119,8 @@ _garrisonGroups = 0;
 while {(spawner getVariable _marcador != 2) and (_cuenta < _tam)} do
 	{
 	_tipo = _garrison select _cuenta;
-	_unit = _grupo createUnit [_tipo, _posicion, [], 0, "NONE"];
+	private _unit_spawn_pos = _posicion findEmptyPosition [_size * 0.25, _size * 0.75];
+	_unit = _grupo createUnit [_tipo, _unit_spawn_pos, [], 0, "NONE"];
 	if (_tipo in SDKSL) then {_grupo selectLeader _unit};
 	[_unit,_marcador] call A3A_fnc_FIAinitBases;
 	_soldados pushBack _unit;

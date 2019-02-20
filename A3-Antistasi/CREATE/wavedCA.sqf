@@ -795,7 +795,7 @@ _nul = [0,"AtaqueAAF1"] spawn A3A_fnc_borrarTask;
 bigAttackInProgress = false; publicVariable "bigAttackInProgress";
 //forcedSpawn = forcedSpawn - _forced; publicVariable "forcedSpawn";
 forcedSpawn = forcedSpawn - [_mrkDestino]; publicVariable "forcedSpawn";
-[3600] remoteExec ["A3A_fnc_timingCA",2];
+[7200] remoteExec ["A3A_fnc_timingCA",2];
 
 {
 _veh = _x;
