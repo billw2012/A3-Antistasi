@@ -1,11 +1,16 @@
 private ["_opfor","_blufor","_pos","_i","_datos","_numCiv","_numVeh","_roads","_prestigeOPFOR","_prestigeBLUFOR"];
 
+params [
+	"_opfor",
+	"_blufor",
+	"_pos",
+	["_reason", "unknown"]
+];
+
+diag_log format ["[citySupportChange] %1 at %2: Base modification %3 NATO, %4 SDK", _reason, _pos, _opfor, _blufor];
+
 waitUntil {!cityIsSupportChanging};
 cityIsSupportChanging = true;
-
-_opfor = _this select 0;
-_blufor = _this select 1;
-_pos = _this select 2;
 
 private _cities = [];
 if (typeName _pos == typeName "") then {
@@ -16,9 +21,9 @@ if (typeName _pos == typeName "") then {
 	_cities = [];
 	{
 		private _distKm = ((getMarkerPos _x) distance _pos) / 1000;
-		private _effect = 0.5 * (1 min (2/(1 + _distKm)));
-		// This effect terminates at about 4km
-		if (_effect > 0.2) then {
+		private _effect = 1/(1 + 3 * _distKm);
+		// This effect terminates at 8km
+		if (_effect > 0.04) then {
 			_cities pushback [_x, _effect];
 		};
 	} forEach ciudades;
@@ -55,6 +60,8 @@ if (typeName _pos == typeName "") then {
 	_datos = [_numCiv, _numVeh,_prestigeOPFOR,_prestigeBLUFOR];
 
 	server setVariable [_ciudad,_datos,true];
+
+	diag_log format ["[citySupportChange] %1: %2 is modified %3 NATO [now %4], %5 SDK [now %6]", _reason, _ciudad, _opforAdjusted, _prestigeOPFOR, _bluforAdjusted, _prestigeBLUFOR];
 } forEach _cities;
 
 cityIsSupportChanging = false;

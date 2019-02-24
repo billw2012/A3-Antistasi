@@ -78,7 +78,7 @@ else
 	{
 	_cuenta = 120*_bonus;//120
 	[[_posicion,malos,"",true],"A3A_fnc_patrolCA"] remoteExec ["A3A_fnc_scheduler",2];
-	[10*_bonus,-20*_bonus,_marcador] remoteExec ["A3A_fnc_citySupportChange",2];
+	[10*_bonus,-20*_bonus,_marcador,"Mission: Steal From Bank Started"] remoteExec ["A3A_fnc_citySupportChange",2];
 	["TaskFailed", ["", format ["Bank of %1 being assaulted",_nombredest]]] remoteExec ["BIS_fnc_showNotification",malos];
 	{_amigo = _x;
 	if (_amigo distance _camion < 300) then

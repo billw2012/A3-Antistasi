@@ -1,5 +1,6 @@
-DONE Remove drones in RHS.
-DONE Fix orientation of statics spawned in base.
-DONE Round display for HR down, but keep it fractional internally, display max cap as well.
-DONE Add can opener script to get crew out of tank?
-DONE Increase timer for attack.
+Better garrison spawning
+Slow down civies
+Unlock all mags for weapons in arsenal update
+Color the menu options
+Make planes return from punishment
+Make waves: start with para, then air foothold, then land

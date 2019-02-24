@@ -19,7 +19,7 @@ if (side group player == buenos) then
 
 	if (_owner != _viejo) exitWith {hint "Died while remote controlling AI"; selectPlayer _owner; disableUserInput false; deleteVehicle _nuevo};
 
-	_nul = [0,-1,getPos _viejo] remoteExec ["A3A_fnc_citySupportChange",2];
+	_nul = [0,-1,getPos _viejo,"Player Respawned"] remoteExec ["A3A_fnc_citySupportChange",2];
 
 	_score = _viejo getVariable ["score",0];
 	_punish = _viejo getVariable ["punish",0];

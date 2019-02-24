@@ -15,23 +15,45 @@ _size = [_marcador] call A3A_fnc_sizeMarker;
 _posicion = getMarkerPos _marcador;
 if (_jugador distance2D _posicion > _size) exitWith {hint "This asset needs to be closer to it relative zone center to be able to be moved"};
 
+private _world_pos = _cosa modelToWorld [0,0,0.1];
 _cosa removeAction _id;
-_cosa attachTo [_jugador,[0,2,1]];
-accion = _jugador addAction ["Drop Here", {{detach _x} forEach attachedObjects player; player removeAction accion},nil,0,false,true,"",""];
+private _relative_pos = _jugador worldToModel _world_pos;
+private _starting_h = getCameraViewDirection _jugador select 2;
+_cosa enableSimulationGlobal false;
+_cosa attachTo [_jugador, _jugador worldToModel _world_pos];//[0,2,1]];
 
-waitUntil {sleep 1; (count attachedObjects _jugador == 0) or (vehicle _jugador != _jugador) or (_jugador distance2D _posicion > (_size-3)) or !([_jugador] call A3A_fnc_canFight) or (!isPlayer _jugador)};
+["SetHQObjectHeight", "onEachFrame", {
+	params ["_obj", "_mover", "_relative_pos", "_starting_h"];
+	private _relative_h = (getCameraViewDirection _mover select 2) - _starting_h;
+	detach _obj;
+	_obj attachTo [_mover, _relative_pos vectorAdd [0, 0, _relative_h * vectorMagnitude _relative_pos]];
+}, [_cosa, _jugador, _relative_pos, _starting_h]] call BIS_fnc_addStackedEventHandler;
 
+accion = _jugador addAction ["Drop Here", {
+	["SetHQObjectHeight", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+	{
+		detach _x;
+		_x enableSimulationGlobal true;
+	} forEach attachedObjects player;
+	player removeAction (_this select 2);
+},nil,0,false,true,"",""];
+
+waitUntil {sleep 1; 
+	(count attachedObjects _jugador == 0) or 
+	(vehicle _jugador != _jugador) or 
+	(_jugador distance2D _posicion > (_size-3)) or 
+	!([_jugador] call A3A_fnc_canFight) or 
+	(!isPlayer _jugador)};
+
+{
+	detach _x;
+	_x enableSimulationGlobal true;
+} forEach attachedObjects _jugador;
 {detach _x} forEach attachedObjects _jugador;
 player removeAction accion;
-/*
-for "_i" from 0 to (_jugador addAction ["",""]) do
-	{
-	_jugador removeAction _i;
-	};
-*/
-_cosa addAction ["Move this asset", "moveHQObject.sqf",nil,0,false,true,"","(_this == theBoss)"];
+["SetHQObjectHeight", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
 
-_cosa setPosATL [getPosATL _cosa select 0,getPosATL _cosa select 1,0];
+_cosa addAction ["Move this asset", "moveHQObject.sqf",nil,0,false,true,"","(_this == theBoss)"];
 
 if (vehicle _jugador != _jugador) exitWith {hint "You cannot move HQ assets while in a vehicle"};
 

@@ -56,7 +56,7 @@ while {(spawner getVariable _marcador != 2) and (_cuenta < _numVeh) and (_cuenta
 			_roadcon = roadsConnectedto (_road);
 			_p2 = getPos (_roadcon select 0);
 			_dirveh = [_p1,_p2] call BIS_fnc_DirTo;
-			_pos = [_p1, 3, _dirveh + 90] call BIS_Fnc_relPos;
+			_pos = [_p1, 8, _dirveh + 90] call BIS_Fnc_relPos;
 			_tipoveh = selectRandom arrayCivVeh;
 			/*
 			_mrk = createmarker [format ["%1", count vehicles], _p1];

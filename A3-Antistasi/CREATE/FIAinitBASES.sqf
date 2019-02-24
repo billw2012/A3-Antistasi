@@ -226,7 +226,7 @@ _EHkilledIdx = _unit addEventHandler ["killed", {
 		};
 	if (side _killer == malos) then
 		{
-		[0,-0.25,getPos _muerto] remoteExec ["A3A_fnc_citySupportChange",2];
+		[0,-0.25,getPos _muerto,"SDK Unit Killed"] remoteExec ["A3A_fnc_citySupportChange",2];
 		[-0.25,0] remoteExec ["A3A_fnc_prestige",2];
 		}
 	else

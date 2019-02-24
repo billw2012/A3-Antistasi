@@ -52,17 +52,17 @@ if (!isMultiPlayer) then
     distancias = [] spawn A3A_fnc_distancias4;
     resourcecheck = [] execVM "resourcecheck.sqf";
     [] execVM "Scripts\fn_advancedTowingInit.sqf";
-    addMissionEventHandler ["BuildingChanged",
-        {
-        _building = _this select 0;
-        if !(_building in antenas) then
-            {
-            if (_this select 2) then
-                {
-                destroyedBuildings pushBack (getPosATL _building);
-                };
-            };
-        }];
+    // addMissionEventHandler ["BuildingChanged",
+    //     {
+    //     _building = _this select 0;
+    //     if !(_building in antenas) then
+    //         {
+    //         if (_this select 2) then
+    //             {
+    //             destroyedBuildings pushBack (getPosATL _building);
+    //             };
+    //         };
+    //     }];
     deleteMarker "respawn_east";
     if (buenos == independent) then {deleteMarker "respawn_west"} else {deleteMarker "respawn_guerrila"};
     };

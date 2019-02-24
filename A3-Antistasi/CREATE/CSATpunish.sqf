@@ -165,24 +165,32 @@ if ((({not (captive _x)} count _soldados) < ({captive _x} count _soldados)) or (
 	["AtaqueAAF",[format ["%2 is making a punishment expedition to %1. They will kill everybody there. Defend the city at all costs",_nombredest,nameMuyMalos],format ["%1 Punishment",nameMuyMalos],_mrkDestino],getMarkerPos _mrkDestino,"SUCCEEDED"] call A3A_fnc_taskUpdate;
 	if ({(side _x == buenos) and (_x distance _posDestino < _size * 2)} count allUnits >= {(side _x == malos) and (_x distance _posDestino < _size * 2)} count allUnits) then
 		{
-		if (lados getVariable [_mrkDestino,sideUnknown] == malos) then {[-15,15,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2]} else {[-5,15,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2]};
+		if (lados getVariable [_mrkDestino,sideUnknown] == malos) then {
+			[-15,15,_posdestino, "CSAT Punish/CSAT Lose to SDK: NATO Town"] remoteExec ["A3A_fnc_citySupportChange",2];
+		} else {
+			[-5,15,_posdestino, "CSAT Punish/CSAT Lose to SDK: SDK Town"] remoteExec ["A3A_fnc_citySupportChange",2];
+		};
 		[-5,0] remoteExec ["A3A_fnc_prestige",2];
-		{[-10,10,_x] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
+		{[-2,2,_x, "CSAT Punish/CSAT Lose to SDK: Other Towns"] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
 		{if (isPlayer _x) then {[10,_x] call A3A_fnc_playerScoreAdd}} forEach ([500,0,_posdestino,buenos] call A3A_fnc_distanceUnits);
 		[10,theBoss] call A3A_fnc_playerScoreAdd;
 		}
 	else
 		{
-		if (lados getVariable [_mrkDestino,sideUnknown] == malos) then {[15,-5,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2]} else {[15,-15,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2]};
-		{[10,-10,_x] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
+		if (lados getVariable [_mrkDestino,sideUnknown] == malos) then {
+			[15,-5,_posdestino, "CSAT Punish/CSAT Lose to NATO: NATO Town"] remoteExec ["A3A_fnc_citySupportChange",2];
+		} else {
+			[15,-15,_posdestino, "CSAT Punish/CSAT Lose to NATO: SDK Town"] remoteExec ["A3A_fnc_citySupportChange",2];
+		};
+		{[2,-2,_x, "CSAT Punish/CSAT Lose to NATO: Other Towns"] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
 		};
 	}
 else
 	{
 	["AtaqueAAF",[format ["%2 is making a punishment expedition to %1. They will kill everybody there. Defend the city at all costs",_nombredest,nameMuyMalos],format ["%1 Punishment",nameMuyMalos],_mrkDestino],getMarkerPos _mrkDestino,"FAILED"] call A3A_fnc_taskUpdate;
 	//["AtaqueAAF", "FAILED",true] spawn BIS_fnc_taskSetState;
-	[-20,-20,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2];
-	{[-10,-10,_x] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
+	[-20,-20,_posdestino,"CSAT Punish/CSAT Win: Target Town"] remoteExec ["A3A_fnc_citySupportChange",2];
+	{[-2,-2,_x,"CSAT Punish/CSAT Win: Other Towns"] remoteExec ["A3A_fnc_citySupportChange",2]} forEach ciudades;
 	destroyedCities = destroyedCities + [_mrkDestino];
 	publicVariable "destroyedCities";
 	for "_i" from 1 to 60 do

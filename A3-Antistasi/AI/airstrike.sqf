@@ -23,10 +23,9 @@ _origPos = [];
 _pos2 = [];
 _finPos = [];
 _exit = false;
+sleep (120 + random(300));
 if (_esMarcador) then
 	{
-	_timeOut = time + 120 + random(300);
-	waitUntil {sleep 1; (spawner getVariable _marcador == 0) or (time > _timeOut)};
 
 	if (_marcador in aeropuertos) then
 		{
@@ -47,9 +46,6 @@ if (_esMarcador) then
 	}
 else
 	{
-	_timeOut = time + 120 + random(300);
-	waitUntil {sleep 1; (spawner getVariable _marcador == 0) or (time > _timeOut)};
-
 	_amigos = if (_lado == malos) then {allUnits select {(_x distance _posicion < 300) and (alive _x) and ((side _x == malos) or (side _x == civilian))}} else {allUnits select {(_x distance _posicion < 300) and (alive _x) and (side _x == muyMalos)}};
 	if (count _amigos == 0) then
 		{

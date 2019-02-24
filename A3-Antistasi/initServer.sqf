@@ -148,17 +148,17 @@ diag_log "Antistasi MP Server. Arsenal config finished";
 [[petros,"hint","Server Init Completed"],"A3A_fnc_commsMP"] call BIS_fnc_MP;
 
 addMissionEventHandler ["HandleDisconnect",{_this call A3A_fnc_onPlayerDisconnect;false}];
-addMissionEventHandler ["BuildingChanged",
-        {
-        _building = _this select 0;
-        if !(_building in antenas) then
-            {
-            if (_this select 2) then
-                {
-                destroyedBuildings pushBack (getPosATL _building);
-                };
-            };
-        }];
+// addMissionEventHandler ["BuildingChanged",
+//         {
+//         _building = _this select 0;
+//         if !(_building in antenas) then
+//             {
+//             if (_this select 2) then
+//                 {
+//                 destroyedBuildings pushBack (getPosATL _building);
+//                 };
+//             };
+//         }];
 
 serverInitDone = true; publicVariable "serverInitDone";
 diag_log "Antistasi MP Server. serverInitDone set to true.";

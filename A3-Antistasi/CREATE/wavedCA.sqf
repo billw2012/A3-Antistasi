@@ -393,10 +393,9 @@ while {(_waves > 0)} do
 		_posSuelo = [_posOrigen select 0,_posorigen select 1,0];
 		_posOrigen set [2,300];
 		_grupoUav = grpNull;
-		if !(hayIFA) then
+		_tipoVeh = if (_lado == malos) then {vehNATOUAV} else {vehCSATUAV};
+		if (!(hayIFA) and !(_tipoVeh != "not_supported")) then
 			{
-			_tipoVeh = if (_lado == malos) then {vehNATOUAV} else {vehCSATUAV};
-
 			_uav = createVehicle [_tipoVeh, _posOrigen, [], 0, "FLY"];
 			_vehiculos pushBack _uav;
 			//[_uav,"UAV"] spawn A3A_fnc_inmuneConvoy;
@@ -677,7 +676,7 @@ while {(_waves > 0)} do
 			["AtaqueAAF1",[format ["We are attacking an %2 from the %1. Help the operation if you can",_nombreorig,_nombreDest],format ["%1 Attack",_nombreEny],_mrkDestino],getMarkerPos _mrkDestino,"SUCEEDED"] call A3A_fnc_taskUpdate;
 			if (_mrkDestino in ciudades) then
 				{
-				[0,-100,_mrkDestino] remoteExec ["A3A_fnc_citySupportChange",2];
+				[0,-100,_mrkDestino,"wavedCA City Lost"] remoteExec ["A3A_fnc_citySupportChange",2];
 				["TaskFailed", ["", format ["%1 joined %2",[_mrkDestino, false] call A3A_fnc_fn_location,nameMalos]]] remoteExec ["BIS_fnc_showNotification",buenos];
 				lados setVariable [_mrkDestino,malos,true];
 				_nul = [-5,0] remoteExec ["A3A_fnc_prestige",2];

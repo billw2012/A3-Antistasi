@@ -435,7 +435,7 @@ if (_tipoConvoy == "Armor") then
 		_taskState = "SUCCEEDED";
 		_taskState1 = "FAILED";
 		[5,0] remoteExec ["A3A_fnc_prestige",2];
-		[0,5*_bonus,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2];
+		[0,5*_bonus,_posdestino, "Mission: Convoy Won"] remoteExec ["A3A_fnc_citySupportChange",2];
 		[1800*_bonus] remoteExec ["A3A_fnc_timingCA",2];
 		{if (isPlayer _x) then {[10*_bonus,_x] call A3A_fnc_playerScoreAdd}} forEach ([500,0,_vehObj,buenos] call A3A_fnc_distanceUnits);
 		[5*_bonus,theBoss] call A3A_fnc_playerScoreAdd;
@@ -486,7 +486,7 @@ if (_tipoConvoy == "Prisoners") then
 			_hr = _cuenta;
 			_resourcesFIA = 300 * _cuenta;
 			[_hr,_resourcesFIA*_bonus] remoteExec ["A3A_fnc_resourcesFIA",2];
-			[0,10*_bonus,_posbase] remoteExec ["A3A_fnc_citySupportChange",2];
+			[0,10*_bonus,_posbase, "Mission: Convoy Won"] remoteExec ["A3A_fnc_citySupportChange",2];
 			if (_lado == malos) then {[3,0] remoteExec ["A3A_fnc_prestige",2]} else {[-2*_cuenta,3] remoteExec ["A3A_fnc_prestige",2]};
 			{[_x] join _grppow; [_x] orderGetin false} forEach _POWs;
 			{[_cuenta,_x] call A3A_fnc_playerScoreAdd} forEach (allPlayers - (entities "HeadlessClient_F"));
@@ -502,7 +502,7 @@ if (_tipoConvoy == "Refuerzos") then
 		{
 		_taskState = "SUCCEEDED";
 		_taskState1 = "FAILED";
-		[0,10*_bonus,_posbase] remoteExec ["A3A_fnc_citySupportChange",2];
+		[0,10*_bonus,_posbase, "Mission: Convoy Won"] remoteExec ["A3A_fnc_citySupportChange",2];
 		if (_lado == malos) then {[3,0] remoteExec ["A3A_fnc_prestige",2]} else {[0,3] remoteExec ["A3A_fnc_prestige",2]};
 		{if (_x distance _vehObj < 500) then {[10*_bonus,_x] call A3A_fnc_playerScoreAdd}} forEach (allPlayers - (entities "HeadlessClient_F"));
 		[5*_bonus,theBoss] call A3A_fnc_playerScoreAdd;
@@ -562,7 +562,7 @@ if (_tipoConvoy == "Money") then
 			{
 			_taskState = "SUCCEEDED";
 			_taskState1 = "FAILED";
-			[10*_bonus,-20*_bonus,_posdestino] remoteExec ["A3A_fnc_citySupportChange",2];
+			[10*_bonus,-20*_bonus,_posdestino, "Mission: Money Convoy Won"] remoteExec ["A3A_fnc_citySupportChange",2];
 			[3,0] remoteExec ["A3A_fnc_prestige",2];
 			[0,5000*_bonus] remoteExec ["A3A_fnc_resourcesFIA",2];
 			[-120*_bonus] remoteExec ["A3A_fnc_timingCA",2];
@@ -601,7 +601,7 @@ if (_tipoConvoy == "Supplies") then
 				{
 				_taskState = "SUCCEEDED";
 				_taskState1 = "FAILED";
-				[0,15*_bonus,_destino] remoteExec ["A3A_fnc_citySupportChange",2];
+				[0,15*_bonus,_destino, "Mission: Supplies Convoy Won, Delivered"] remoteExec ["A3A_fnc_citySupportChange",2];
 				{if (_x distance _vehObj < 500) then {[10*_bonus,_x] call A3A_fnc_playerScoreAdd}} forEach (allPlayers - (entities "HeadlessClient_F"));
 				[5*_bonus,theBoss] call A3A_fnc_playerScoreAdd;
 				}
@@ -609,7 +609,7 @@ if (_tipoConvoy == "Supplies") then
 				{
 				_taskState = "FAILED";
 				_taskState1 = "FAILED";
-				[5*_bonus,-10*_bonus,_destino] remoteExec ["A3A_fnc_citySupportChange",2];
+				[5*_bonus,-10*_bonus,_destino, "Mission: Supplies Convoy Failed"] remoteExec ["A3A_fnc_citySupportChange",2];
 				[3,0] remoteExec ["A3A_fnc_prestige",2];
 				[-10*_bonus,theBoss] call A3A_fnc_playerScoreAdd;
 				};
@@ -619,7 +619,7 @@ if (_tipoConvoy == "Supplies") then
 			_taskState = "FAILED";
 			_taskState1 = "SUCCEEDED";
 			[-3,0] remoteExec ["A3A_fnc_prestige",2];
-			[15*_bonus,0,_destino] remoteExec ["A3A_fnc_citySupportChange",2];
+			[15*_bonus,0,_destino, "Mission: Supplies Convoy Failed, Delivered"] remoteExec ["A3A_fnc_citySupportChange",2];
 			[-10*_bonus,theBoss] call A3A_fnc_playerScoreAdd;
 			};
 		};
