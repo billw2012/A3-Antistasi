@@ -559,7 +559,7 @@ while {(_waves > 0)} do
 						else
 							{
 							{_x disableAI "TARGET"; _x disableAI "AUTOTARGET"} foreach units _grupoVeh;
-							if ((_tipoVeh in vehFastRope) and ((count(garrison getVariable _mrkDestino)) < 10)) then
+							if ((_tipoVeh in vehFastRope) and ((count(garrison getVariable [_mrkDestino, []])) < 10)) then
 								{
 								//_grupo setVariable ["mrkAttack",_mrkDestino];
 								[_veh,_grupo,_posDestino,_posOrigen,_grupoVeh] spawn A3A_fnc_fastrope;

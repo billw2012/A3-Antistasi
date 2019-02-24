@@ -9,8 +9,7 @@
 
 forcedSpawn = [];
 ciudades = [];
-if (worldName == "Tanoa") then
-    {
+if (worldName == "Tanoa") then {
     aeropuertos = ["airport","airport_1","airport_2","airport_3","airport_4"];//airports
     spawnPoints = ["spawnPoint","spawnPoint_1","spawnPoint_2","spawnPoint_3","spawnPoint_4"];
     recursos = ["resource","resource_1","resource_2","resource_3","resource_4","resource_5","resource_6","resource_7"];//economic resources
@@ -21,58 +20,31 @@ if (worldName == "Tanoa") then
     seaMarkers = ["seaPatrol","seaPatrol_1","seaPatrol_2","seaPatrol_3","seaPatrol_4","seaPatrol_5","seaPatrol_6","seaPatrol_7","seaPatrol_8","seaPatrol_9","seaPatrol_10","seaPatrol_11","seaPatrol_12","seaPatrol_13","seaPatrol_14","seaPatrol_15","seaPatrol_16","seaPatrol_17","seaPatrol_18","seaPatrol_19","seaPatrol_20","seaPatrol_21"];
     seaSpawn = ["seaSpawn","seaSpawn_1","seaSpawn_2","seaSpawn_3","seaSpawn_4","seaSpawn_5","seaSpawn_6","seaSpawn_7","seaSpawn_8","seaSpawn_9","seaSpawn_10","seaSpawn_11","seaSpawn_12","seaSpawn_13","seaSpawn_14","seaSpawn_15","seaSpawn_16","seaSpawn_17","seaSpawn_18","seaSpawn_19","seaSpawn_20","seaSpawn_21","seaSpawn_22","seaSpawn_23","seaSpawn_24","seaSpawn_25","seaSpawn_26","seaSpawn_27","seaSpawn_28","seaSpawn_29","seaSpawn_30","seaSpawn_31","seaSpawn_32"];
     seaAttackSpawn = ["seaAttackSpawn","seaAttackSpawn_1","seaAttackSpawn_2","seaAttackSpawn_3","seaAttackSpawn_4","seaAttackSpawn_5","seaAttackSpawn_6","seaAttackSpawn_7","seaAttackSpawn_8","seaAttackSpawn_9","seaAttackSpawn_10"];
-    }
-else
-    {
-    if (worldName == "Altis") then
+} else {
+    if (worldName == "Altis") then {
+        aeropuertos = (allMapMarkers select { _x find "airport" == 0 }) sort true;
+        spawnPoints = (allMapMarkers select { _x find "spawnPoint" == 0 }) sort true;
+        recursos = (allMapMarkers select { _x find "resource" == 0 }) sort true;
+        fabricas = (allMapMarkers select { _x find "factory" == 0 }) sort true;
+        puestos = (allMapMarkers select { _x find "puesto" == 0 }) sort true;
+        puertos = (allMapMarkers select { _x find "puerto" == 0 }) sort true;
+        controles = (allMapMarkers select { _x find "control" == 0 }) sort true;
+        seaMarkers = (allMapMarkers select { _x find "seaPatrol" == 0 }) sort true;
+        seaSpawn = (allMapMarkers select { _x find "seaSpawn" == 0 }) sort true;
+        seaAttackSpawn = (allMapMarkers select { _x find "seaAttackSpawn" == 0 }) sort true;
+        // aeropuertos = ["airport","airport_1","airport_2","airport_3","airport_4","airport_5"];//airports
+        // spawnPoints = ["spawnPoint","spawnPoint_1","spawnPoint_2","spawnPoint_3","spawnPoint_4","spawnPoint_5"];
+        // recursos = ["resource","resource_1","resource_2","resource_3","resource_4","resource_5","resource_6","resource_7"];//economic resources
+        // fabricas = ["factory","factory_1","factory_2","factory_3","factory_4","factory_5","factory_6","factory_7","factory_8","factory_9","factory_10","factory_11"];//factories
+        // puestos = ["puesto","puesto_1","puesto_2","puesto_3","puesto_4","puesto_5","puesto_6","puesto_7","puesto_8","puesto_9","puesto_10","puesto_11","puesto_12","puesto_13","puesto_14","puesto_15","puesto_16","puesto_17","puesto_18","puesto_19","puesto_20","puesto_21","puesto_22","puesto_23","puesto_24","puesto_25","puesto_26","puesto_27","puesto_28","puesto_29","puesto_30","puesto_31","puesto_32","puesto_33","puesto_34","puesto_35","puesto_36","puesto_37","puesto_38","puesto_39","puesto_40","puesto_41","puesto_42"];
+        // puertos = ["puerto","puerto_1","puerto_2","puerto_3","puerto_4"];//seaports, adding a lot will affect economics, 5 is ok
+        // controles = ["control","control_1","control_2","control_3","control_4","control_5","control_6","control_7","control_8","control_9","control_10","control_11","control_12","control_13","control_14","control_15","control_16","control_17","control_18","control_19","control_20","control_21","control_22","control_23","control_24","control_25","control_26","control_27","control_28","control_29","control_30","control_31","control_32","control_33","control_34","control_35","control_36","control_37","control_38","control_39","control_40","control_41","control_42","control_43","control_44","control_45","control_46","control_47","control_48","control_49","control_50","control_51","control_52","control_53","control_54","control_55","control_56","control_57","control_58"];//use this for points where you want a roadblock (logic/strategic points, such as crossroads, airport or bases entrances etc..) game will add some more automatically
+        // seaMarkers = ["seaPatrol","seaPatrol_1","seaPatrol_2","seaPatrol_3","seaPatrol_4","seaPatrol_5","seaPatrol_6","seaPatrol_7","seaPatrol_8","seaPatrol_9","seaPatrol_10","seaPatrol_11","seaPatrol_12","seaPatrol_13","seaPatrol_14","seaPatrol_15","seaPatrol_16","seaPatrol_17","seaPatrol_18","seaPatrol_19","seaPatrol_20","seaPatrol_21","seaPatrol_22","seaPatrol_23","seaPatrol_24","seaPatrol_25","seaPatrol_26","seaPatrol_27"];
+        // seaSpawn = ["seaSpawn","seaSpawn_1","seaSpawn_2","seaSpawn_3","seaSpawn_4","seaSpawn_5","seaSpawn_6","seaSpawn_7","seaSpawn_8","seaSpawn_9"];
+        // seaAttackSpawn = ["seaAttackSpawn","seaAttackSpawn_1","seaAttackSpawn_2","seaAttackSpawn_3","seaAttackSpawn_4","seaAttackSpawn_5","seaAttackSpawn_6"];
         {
-        aeropuertos = ["airport","airport_1","airport_2","airport_3","airport_4","airport_5"];//airports
-        spawnPoints = ["spawnPoint","spawnPoint_1","spawnPoint_2","spawnPoint_3","spawnPoint_4","spawnPoint_5"];
-        recursos = ["resource","resource_1","resource_2","resource_3","resource_4","resource_5","resource_6","resource_7"];//economic resources
-        fabricas = ["factory","factory_1","factory_2","factory_3","factory_4","factory_5","factory_6","factory_7","factory_8","factory_9","factory_10","factory_11"];//factories
-        puestos = ["puesto","puesto_1","puesto_2","puesto_3","puesto_4","puesto_5","puesto_6","puesto_7","puesto_8","puesto_9","puesto_10","puesto_11","puesto_12","puesto_13","puesto_14","puesto_15","puesto_16","puesto_17","puesto_18","puesto_19","puesto_20","puesto_21","puesto_22","puesto_23","puesto_24","puesto_25","puesto_26","puesto_27","puesto_28","puesto_29","puesto_30","puesto_31","puesto_32","puesto_33","puesto_34","puesto_35","puesto_36","puesto_37","puesto_38","puesto_39","puesto_40","puesto_41","puesto_42"];
-        puertos = ["puerto","puerto_1","puerto_2","puerto_3","puerto_4"];//seaports, adding a lot will affect economics, 5 is ok
-        controles = ["control","control_1","control_2","control_3","control_4","control_5","control_6","control_7","control_8","control_9","control_10","control_11","control_12","control_13","control_14","control_15","control_16","control_17","control_18","control_19","control_20","control_21","control_22","control_23","control_24","control_25","control_26","control_27","control_28","control_29","control_30","control_31","control_32","control_33","control_34","control_35","control_36","control_37","control_38","control_39","control_40","control_41","control_42","control_43","control_44","control_45","control_46","control_47","control_48","control_49","control_50","control_51","control_52","control_53","control_54","control_55","control_56","control_57","control_58"];//use this for points where you want a roadblock (logic/strategic points, such as crossroads, airport or bases entrances etc..) game will add some more automatically
-        seaMarkers = ["seaPatrol","seaPatrol_1","seaPatrol_2","seaPatrol_3","seaPatrol_4","seaPatrol_5","seaPatrol_6","seaPatrol_7","seaPatrol_8","seaPatrol_9","seaPatrol_10","seaPatrol_11","seaPatrol_12","seaPatrol_13","seaPatrol_14","seaPatrol_15","seaPatrol_16","seaPatrol_17","seaPatrol_18","seaPatrol_19","seaPatrol_20","seaPatrol_21","seaPatrol_22","seaPatrol_23","seaPatrol_24","seaPatrol_25","seaPatrol_26","seaPatrol_27"];
-        seaSpawn = ["seaSpawn","seaSpawn_1","seaSpawn_2","seaSpawn_3","seaSpawn_4","seaSpawn_5","seaSpawn_6","seaSpawn_7","seaSpawn_8","seaSpawn_9"];
-        seaAttackSpawn = ["seaAttackSpawn","seaAttackSpawn_1","seaAttackSpawn_2","seaAttackSpawn_3","seaAttackSpawn_4","seaAttackSpawn_5","seaAttackSpawn_6"];
-        {
-        _name = text _x;
-        if ((_name != "Magos") AND !(_name == "")) then {
-            _sizeX = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusA");
-            _sizeY = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusB");
-            _size = if (_sizeX > _sizeY) then {_sizeX} else {_sizeY};
-            _pos = getPos _x;
-            if (_size < 10) then {_size = 50};
-
-            _mrk = createmarker [format ["%1", _name], _pos];
-            _mrk setMarkerSize [_size, _size];
-            _mrk setMarkerShape "ELLIPSE";
-            _mrk setMarkerBrush "SOLID";
-            _mrk setMarkerColor "ColorRed";
-            _mrk setMarkerText _name;
-            controles pushBack _name;
-        };
-        } foreach (nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["Hill"], worldSize/1.414]);
-        }
-    else
-        {
-        if (worldName == "chernarus_summer") then
-            {
-            aeropuertos = ["airport","airport_1","airport_2"];
-            spawnPoints = ["spawnPoint","spawnPoint_1","spawnPoint_2"];
-            recursos = ["resource","resource_1","resource_2","resource_3","resource_4","resource_5","resource_6","resource_7","resource_8","resource_9"];
-            fabricas = ["factory","factory_1","factory_2","factory_3","factory_4"];
-            puestos = ["puesto","puesto_1","puesto_2","puesto_3","puesto_4","puesto_5","puesto_6","puesto_7","puesto_8","puesto_9","puesto_10","puesto_11","puesto_12","puesto_13","puesto_14","puesto_15","puesto_16","puesto_17","puesto_18","puesto_19","puesto_20","puesto_21"];
-            puertos = ["puerto","puerto_1","puerto_2","puerto_3","puerto_4"];
-            controles = ["control","control_1","control_2","control_3","control_4","control_5","control_6","control_7","control_8","control_9","control_10","control_11","control_12","control_13","control_14","control_15","control_16","control_17","control_18","control_19","control_20","control_21","control_22","control_23","control_24","control_25","control_26","control_27","control_28","control_29","control_30","control_31","control_32","control_33","control_34","control_35","control_36","control_37","control_38","control_39","control_40"];
-            seaMarkers = [];
-            seaSpawn = [];
-            seaAttackSpawn = [];
-            {
             _name = text _x;
-            if ((_name != "Magos") AND !(_name == "")) then
-                {
+            if ((_name != "Magos") AND !(_name == "")) then {
                 _sizeX = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusA");
                 _sizeY = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusB");
                 _size = if (_sizeX > _sizeY) then {_sizeX} else {_sizeY};
@@ -86,20 +58,54 @@ else
                 _mrk setMarkerColor "ColorRed";
                 _mrk setMarkerText _name;
                 controles pushBack _name;
+            };
+        } foreach (nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["Hill"], worldSize/1.414]);
+    } else {
+        if (worldName == "chernarus_summer") then {
+            aeropuertos = ["airport","airport_1","airport_2"];
+            spawnPoints = ["spawnPoint","spawnPoint_1","spawnPoint_2"];
+            recursos = ["resource","resource_1","resource_2","resource_3","resource_4","resource_5","resource_6","resource_7","resource_8","resource_9"];
+            fabricas = ["factory","factory_1","factory_2","factory_3","factory_4"];
+            puestos = ["puesto","puesto_1","puesto_2","puesto_3","puesto_4","puesto_5","puesto_6","puesto_7","puesto_8","puesto_9","puesto_10","puesto_11","puesto_12","puesto_13","puesto_14","puesto_15","puesto_16","puesto_17","puesto_18","puesto_19","puesto_20","puesto_21"];
+            puertos = ["puerto","puerto_1","puerto_2","puerto_3","puerto_4"];
+            controles = ["control","control_1","control_2","control_3","control_4","control_5","control_6","control_7","control_8","control_9","control_10","control_11","control_12","control_13","control_14","control_15","control_16","control_17","control_18","control_19","control_20","control_21","control_22","control_23","control_24","control_25","control_26","control_27","control_28","control_29","control_30","control_31","control_32","control_33","control_34","control_35","control_36","control_37","control_38","control_39","control_40"];
+            seaMarkers = [];
+            seaSpawn = [];
+            seaAttackSpawn = [];
+            {
+                _name = text _x;
+                if ((_name != "Magos") AND !(_name == "")) then {
+                    _sizeX = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusA");
+                    _sizeY = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusB");
+                    _size = if (_sizeX > _sizeY) then {_sizeX} else {_sizeY};
+                    _pos = getPos _x;
+                    if (_size < 10) then {_size = 50};
+
+                    _mrk = createmarker [format ["%1", _name], _pos];
+                    _mrk setMarkerSize [_size, _size];
+                    _mrk setMarkerShape "ELLIPSE";
+                    _mrk setMarkerBrush "SOLID";
+                    _mrk setMarkerColor "ColorRed";
+                    _mrk setMarkerText _name;
+                    controles pushBack _name;
                 };
             } foreach (nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["Hill"], worldSize/1.414]);
-            };
         };
     };
-{_x setMarkerAlpha 0} forEach (seaMarkers + seaSpawn + seaAttackSpawn + spawnPoints);
+};
+
+{ _x setMarkerAlpha 0 } forEach (seaMarkers + seaSpawn + seaAttackSpawn + spawnPoints);
+
 defaultControlIndex = (count controles) - 1;
 puestosFIA = [];
 destroyedCities = [];
 garrison setVariable ["Synd_HQ",[],true];
 marcadores = aeropuertos + recursos + fabricas + puestos + puertos + controles + ["Synd_HQ"];
-{_x setMarkerAlpha 0;
-spawner setVariable [_x,2,true];
+{
+    _x setMarkerAlpha 0;
+    spawner setVariable [_x,2,true];
 } forEach marcadores;
+
 private ["_sizeX","_sizeY","_size"];
 {
 //_nombre = text _x;

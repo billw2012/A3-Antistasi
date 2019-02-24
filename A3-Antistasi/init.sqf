@@ -43,6 +43,9 @@ if (!isMultiPlayer) then
     minWeaps = 24;
     civTraffic = 1;
     limitedFT = false;
+    easyRevive = true;
+    bleedoutTimeMul = 4;
+    reviveTimeMul = 4;
     {
     private _index = _x call jn_fnc_arsenal_itemType;
     [_index,_x,-1] call jn_fnc_arsenal_addItem;
