@@ -54,6 +54,7 @@ if (side (group _killer) == buenos) then
 		{
 		if (_lado == malos) then
 			{
+			[-1, 0, "SDK Killed Unarmed Enemy"] remoteExec ["A3A_fnc_timingCA", 2];
 			//[3,-3,getPos _muerto] remoteExec ["A3A_fnc_citySupportChange",2];
 			[1,0] remoteExec ["A3A_fnc_prestige",2];
 			}

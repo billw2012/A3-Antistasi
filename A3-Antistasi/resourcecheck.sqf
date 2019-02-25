@@ -190,12 +190,13 @@ while {true} do {
             [_veh,1] remoteExec ["setVehicleAmmoDef",_veh];
         };
     } forEach vehicles;
-    // TODO: refector cuentaCA to cycles instead of seconds.
-    cuentaCA = cuentaCA - 600;
-    if (cuentaCA < 0) then {cuentaCA = 0};
+
+    cuentaCA = 0 max (cuentaCA - 600);
+    timeSinceLastAttack = timeSinceLastAttack + 600;
     publicVariable "cuentaCA";
     if ((cuentaCA == 0)/* and (diag_fps > minimoFPS)*/) then {
-        [3600] remoteExec ["A3A_fnc_timingCA",2];
+        timeSinceLastAttack = 0;
+        [1200, 600, "Spawning big attack"] remoteExec ["A3A_fnc_timingCA", 2];
         if (!bigAttackInProgress) then {
             _script = [] spawn A3A_fnc_ataqueAAF;
             waitUntil {sleep 5; scriptDone _script};

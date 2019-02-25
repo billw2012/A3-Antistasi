@@ -577,15 +577,10 @@ if (hayTFAR or hayACE or hayRHS or hayACRE or hayFFAA) then
 		{
 		sleep 0.5;
 		_texto = _this select 0;
-		hint _texto;
-		// "Integrated Mods Detected" hintC _texto;
-		// hintC_arr_EH = findDisplay 72 displayAddEventHandler ["unload", {
-		// 	0 = _this spawn {
-		// 		_this select 0 displayRemoveEventHandler ["unload", hintC_arr_EH];
-		// 		hintSilent "";
-		// 	};
-		// 	}];
-		// };
+		private _final_text = "";
+		{ _final_text = _final_text + "\n\n" + _x } forEach _texto;
+		hint _final_text;
+		};
 	};
 waituntil {!isnull (finddisplay 46)};
 gameMenu = (findDisplay 46) displayAddEventHandler ["KeyDown",A3A_fnc_teclas];

@@ -248,6 +248,7 @@ if (spawner getVariable _marcador != 2) then
 		else
 			{
 			lados setVariable [_marcador,buenos,true];
+			[300, 300, "SDK Destroyed Roadblock"] remoteExec ["A3A_fnc_timingCA", 2];
 			//_nul = [0,5,_posicion] remoteExec ["A3A_fnc_citySupportChange",2];
 			};
 		};

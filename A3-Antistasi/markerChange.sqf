@@ -67,6 +67,7 @@ if (_marcador in aeropuertos) then
 	{
 	if (_winner == buenos) then
 		{
+			[600, 600, "SDK Captured Point"] remoteExec ["A3A_fnc_timingCA", 2];
 		//[0,10,_posicion] remoteExec ["A3A_fnc_citySupportChange",2];
 		if (_looser == malos) then
 			{

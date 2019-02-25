@@ -12,7 +12,7 @@ if (_tipo isEqualType "") then {
     private _grupo = objNull;
     if (_tipo == staticCrewBuenos) then {
         diag_log format ["[createSDKgarrisonsTemp] %1 is mortar crew", _tipo];
-        _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and ((typeOf (vehicle (leader _x)) == SDKMortar) && (typeOf (leader _x) == staticCrewBuenos))};
+        _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and ((typeOf (vehicle (leader _x)) == SDKMortar) && (typeOf (leader _x) == staticCrewBuenos)) and (side leader _x == buenos)};
         _pos = [_posicion] call A3A_fnc_mortarPos;
         _veh = SDKMortar createVehicle _pos;
         _nul = [_veh] execVM "scripts\UPSMON\MON_artillery_add.sqf";
@@ -43,7 +43,7 @@ if (_tipo isEqualType "") then {
         };
         // If the unit isn't going to be getting in a vehicle then we try to add them to an existing group
         if (!isNull _veh) then {
-            _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and (count units _x < 8) and (vehicle (leader _x) == leader _x)};        
+            _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and (count units _x < 8) and (vehicle (leader _x) == leader _x) and (side leader _x == buenos)};        
         };
     };
 

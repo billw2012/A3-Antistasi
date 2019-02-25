@@ -41,6 +41,7 @@ if (isServer and !_byPassServer) then
 	["destroyedCities"] call fn_LoadStat;
 	["minas"] call fn_LoadStat;
 	["cuentaCA"] call fn_LoadStat;
+	["timeSinceLastAttack"] call fn_LoadStat;
 	["antenas"] call fn_LoadStat;
 	["prestigeNATO"] call fn_LoadStat;
 	["prestigeCSAT"] call fn_LoadStat;

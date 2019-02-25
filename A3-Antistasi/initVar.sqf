@@ -447,6 +447,7 @@ swoopShutUp = ["V_RebreatherIA","G_Diving"];
 difficultyCoef = if !(isMultiplayer) then {
     0
 } else {
+    // TODO: Fix this, it needs to be done whenever player leave/join
     floor ((({side group _x == buenos} count playableUnits) - ({side group _x != buenos} count playableUnits)) / 5)
 };
 
@@ -503,8 +504,10 @@ prestigeNATO = 5;//Initial Prestige NATO
 prestigeCSAT = 5;//Initial Prestige CSAT
 prestigeOPFOR = 50;//Initial % support for NATO on each city
 if (not cadetMode) then {prestigeOPFOR = 75};//if you play on vet, this is the number
-prestigeBLUFOR = 0;//Initial % FIA support on each city
-cuentaCA = 7200;//600
+// Initial % FIA support on each city
+prestigeBLUFOR = 0;
+cuentaCA = 1200;
+timeSinceLastAttack = 0;
 bombRuns = 0;
 cityIsSupportChanging = false;
 resourcesIsChanging = false;

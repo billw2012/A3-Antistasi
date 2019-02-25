@@ -43,10 +43,11 @@ if ((_tipo in vehNormal) or (_tipo in vehAttack) or (_tipo in vehBoats)) then
 				_tipo = typeOf _veh;
 				if (side (_this select 1) == buenos) then
 					{
-					if (_tipo in vehNATOAPC) then 
-						{
+					//if (_tipo in vehNATOAPC or _tipo) then 
+					//	{
+						[500, 0, "SDK Killed APC"] remoteExec ["A3A_fnc_timingCA", 2];
 						//[-2,2,position (_veh)] remoteExec ["A3A_fnc_citySupportChange",2];
-						};
+					//	};
 					};
 				}];
 			_veh addEventHandler ["HandleDamage",{private ["_veh"]; _veh = _this select 0; if (!canFire _veh) then {[_veh] call A3A_fnc_smokeCoverAuto; _veh removeEventHandler ["HandleDamage",_thisEventHandler]};if (((_this select 1) find "wheel" != -1) and (_this select 4=="") and (!isPlayer driver (_veh))) then {0;} else {(_this select 2);}}];
@@ -65,6 +66,7 @@ if ((_tipo in vehNormal) or (_tipo in vehAttack) or (_tipo in vehBoats)) then
 					_tipo = typeOf _veh;
 					if (side (_this select 1) == buenos) then
 						{
+							[600, 0, "SDK Killed Tank"] remoteExec ["A3A_fnc_timingCA", 2];
 						//if (_tipo in vehNATOAllTanks) then {[-5,5,position (_veh)] remoteExec ["A3A_fnc_citySupportChange",2]};
 						};
 					}];
@@ -117,6 +119,7 @@ else
 					_tipo = typeOf _veh;
 					if (side (_this select 1) == buenos) then
 						{
+							[300, 0, "SDK Killed Heli"] remoteExec ["A3A_fnc_timingCA", 2];
 						//if (_tipo in vehNATOAttackHelis) then {[-5,5,position (_veh)] remoteExec ["A3A_fnc_citySupportChange",2]};
 						};
 					}];
@@ -131,6 +134,7 @@ else
 				_tipo = typeOf _veh;
 				if (side (_this select 1) == buenos) then
 					{
+						[900, 0, "SDK Killed Plane"] remoteExec ["A3A_fnc_timingCA", 2];
 					//if ((_tipo == vehNATOPlane) or (_tipo == vehNATOPlaneAA)) then {[-8,8,position (_veh)] remoteExec ["A3A_fnc_citySupportChange",2]};
 					};
 				}];
@@ -223,6 +227,7 @@ else
 					_tipo = typeOf _veh;
 					if (side (_this select 1) == buenos) then
 						{
+							[400, 0, "SDK Killed AA/MRLS"] remoteExec ["A3A_fnc_timingCA", 2];
 						//if (_tipo == vehNATOAA) then {[-5,5,position (_veh)] remoteExec ["A3A_fnc_citySupportChange",2]};
 						};
 					_tipo call A3A_fnc_removeVehFromPool;
