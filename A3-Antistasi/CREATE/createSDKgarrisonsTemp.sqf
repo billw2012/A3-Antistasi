@@ -42,8 +42,8 @@ if (_tipo isEqualType "") then {
             };
         };
         // If the unit isn't going to be getting in a vehicle then we try to add them to an existing group
-        if (!isNull _veh) then {
-            _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and (count units _x < 8) and (vehicle (leader _x) == leader _x) and (side leader _x == buenos)};        
+        if (isNull _veh) then {
+            _grupos = allGroups select {(leader _x getVariable ["marcador",""] == _marcador) and (count units _x < 8) and (vehicle (leader _x) == leader _x) and (side (leader _x) == buenos)};
         };
     };
 

@@ -44,7 +44,7 @@ fn_LoadStat =
 	"prestigeNATO","prestigeCSAT", "hr","planesAAFcurrent","helisAAFcurrent","APCAAFcurrent","tanksAAFcurrent","armas","items","mochis","municion","fecha", "WitemsPlayer","prestigeOPFOR","prestigeBLUFOR","resourcesAAF","resourcesFIA","skillFIA"];
 */
 specialVarLoads =
-["puestosFIA","minas","estaticas","cuentaCA","antenas","mrkNATO","mrkSDK","prestigeNATO","prestigeCSAT","posHQ", "hr","armas","items","mochis","municion","fecha", "prestigeOPFOR","prestigeBLUFOR","resourcesFIA","skillFIA","distanciaSPWN","civPerc","maxUnits","destroyedCities","garrison","tasks","scorePlayer","rankPlayer","smallCAmrk","dinero","miembros","vehInGarage","destroyedBuildings","personalGarage","idlebases","idleassets","chopForest","weather","killZones","jna_dataList","controlesSDK","loadoutPlayer","mrkCSAT","nextTick","bombRuns","dificultad","gameMode"];
+["puestosFIA","minas","estaticas","cuentaCA","timeSinceLastAttack","cuentaCANonBuenos","antenas","mrkNATO","mrkSDK","prestigeNATO","prestigeCSAT","posHQ", "hr","armas","items","mochis","municion","fecha", "prestigeOPFOR","prestigeBLUFOR","resourcesFIA","skillFIA","distanciaSPWN","civPerc","maxUnits","destroyedCities","garrison","tasks","scorePlayer","rankPlayer","smallCAmrk","dinero","miembros","vehInGarage","destroyedBuildings","personalGarage","idlebases","idleassets","chopForest","weather","killZones","jna_dataList","controlesSDK","loadoutPlayer","mrkCSAT","nextTick","bombRuns","dificultad","gameMode"];
 //THIS FUNCTIONS HANDLES HOW STATS ARE LOADED
 fn_SetStat =
 {
@@ -54,6 +54,8 @@ fn_SetStat =
 	if(_varName in specialVarLoads) then
 	{
 		if(_varName == 'cuentaCA') then {cuentaCA = _varValue; publicVariable "cuentaCA"};
+		if(_varName == 'timeSinceLastAttack') then {timeSinceLastAttack = _varValue; publicVariable "timeSinceLastAttack"};
+		if(_varName == 'cuentaCANonBuenos') then {cuentaCANonBuenos = _varValue; publicVariable "cuentaCANonBuenos"};
 		if(_varName == 'dificultad') then
 			{
 			if !(isMultiplayer) then
@@ -78,7 +80,7 @@ fn_SetStat =
 				};
 			};
 		if(_varName == 'bombRuns') then {bombRuns = _varValue; publicVariable "bombRuns"};
-		if(_varName == 'nextTick') then {nextTick = time + _varValue};
+		if(_varName == 'nextTick') then {nextTick = time + _varValue; publicVariable "nextTick"};
 		if(_varName == 'miembros') then {miembros = +_varValue; publicVariable "miembros"};
 		if(_varName == 'smallCAmrk') then {smallCAmrk = +_varValue};
 		if(_varName == 'mrkNATO') then {{lados setVariable [_x,malos,true]} forEach _varValue;};

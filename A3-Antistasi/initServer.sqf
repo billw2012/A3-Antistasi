@@ -38,7 +38,7 @@ reviveTimeMul = if (paramsArray select 15 == 1) then {1} else {0.25}; publicVari
 _nul = call compile preprocessFileLineNumbers "initVar.sqf";
 initVar = true; publicVariable "initVar";
 savingServer = true;
-diag_log format ["Antistasi MP. InitVar done. Version: %1",antistasiVersion];
+diag_log format ["Antistasi MP. InitVar done. Version: %1", antistasiVersion];
 bookedSlots = floor (((paramsArray select 12)/100) * (playableSlotsNumber buenos)); publicVariable "bookedSlots";
 _nul = call compile preprocessFileLineNumbers "initFuncs.sqf";
 diag_log "Antistasi MP Server. Funcs init finished";

@@ -15,4 +15,7 @@ Auto rearmers can get stuck in rearm pose frozen.
 Sometimes revived units are stuck lying down unable to move even though revived.
 
 Flag moves down.
-Placement of 
+
+Missions aren't synced between players correctly.
+
+Can't move items in base after moving it second time.

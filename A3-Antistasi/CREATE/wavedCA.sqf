@@ -394,7 +394,7 @@ while {(_waves > 0)} do
 		_posOrigen set [2,300];
 		_grupoUav = grpNull;
 		_tipoVeh = if (_lado == malos) then {vehNATOUAV} else {vehCSATUAV};
-		if (!(hayIFA) and !(_tipoVeh != "not_supported")) then
+		if (!hayIFA and _tipoVeh != "not_supported") then
 			{
 			_uav = createVehicle [_tipoVeh, _posOrigen, [], 0, "FLY"];
 			_vehiculos pushBack _uav;
@@ -660,6 +660,7 @@ while {(_waves > 0)} do
 		["TaskSucceeded", ["", "Attack Destination Updated"]] remoteExec ["BIS_fnc_showNotification",buenos];
 		["AtaqueAAF",[format ["%2 Is attacking from the %1. Intercept them or we may loose a sector",_nombreorig,_nombreEny],format ["%1 Attack",_nombreEny],_mrkDestino],getMarkerPos _mrkDestino,"CREATED"] call A3A_fnc_taskUpdate;
 		};
+
 	_solMax = round ((count _soldados)*0.6);
 	_waves = _waves -1;
 	_firstWave = false;

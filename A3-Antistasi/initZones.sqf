@@ -9,25 +9,25 @@
 
 forcedSpawn = [];
 ciudades = [];
-aeropuertos = (allMapMarkers select { _x find "airport" == 0 });
+aeropuertos = (allMapMarkers select { toLower(_x) find "airport" == 0 });
 aeropuertos sort true;
-spawnPoints = (allMapMarkers select { _x find "spawnPoint" == 0 });
+spawnPoints = (allMapMarkers select { toLower(_x) find "spawnpoint" == 0 });
 spawnPoints sort true;
-recursos = (allMapMarkers select { _x find "resource" == 0 });
+recursos = (allMapMarkers select { toLower(_x) find "resource" == 0 });
 recursos sort true;
-fabricas = (allMapMarkers select { _x find "factory" == 0 });
+fabricas = (allMapMarkers select { toLower(_x) find "factory" == 0 });
 fabricas sort true;
-puestos = (allMapMarkers select { _x find "puesto" == 0 });
+puestos = (allMapMarkers select { toLower(_x) find "puesto" == 0 });
 puestos sort true;
-puertos = (allMapMarkers select { _x find "puerto" == 0 });
+puertos = (allMapMarkers select { toLower(_x) find "puerto" == 0 });
 puertos sort true;
-controles = (allMapMarkers select { _x find "control" == 0 });
+controles = (allMapMarkers select { toLower(_x) find "control" == 0 });
 controles sort true;
-seaMarkers = (allMapMarkers select { _x find "seaPatrol" == 0 });
+seaMarkers = (allMapMarkers select { toLower(_x) find "seapatrol" == 0 });
 seaMarkers sort true;
-seaSpawn = (allMapMarkers select { _x find "seaSpawn" == 0 });
+seaSpawn = (allMapMarkers select { toLower(_x) find "seaspawn" == 0 });
 seaSpawn sort true;
-seaAttackSpawn = (allMapMarkers select { _x find "seaAttackSpawn" == 0 });
+seaAttackSpawn = (allMapMarkers select { toLower(_x) find "seaattackspawn" == 0 });
 seaAttackSpawn sort true;
 if (worldName == "Tanoa") then {
     // aeropuertos = ["airport","airport_1","airport_2","airport_3","airport_4"];//airports
@@ -149,7 +149,7 @@ if ((_nombre != "") and (_nombre != "Lakatoro01") and (_nombre != "Galili01") an
     if (_size < 400) then {_size = 400};
     _roads = [];
     _numCiv = 0;
-    if ((worldName != "Tanoa") and (worldName != "Altis") and (worldName != "chernarus_summer")) then//If Tanoa, data is picked from a DB in initVar.sqf, if not, is built on the fly.
+    if ((worldName != "Tanoa") and (worldName != "Altis") and (worldName != "chernarus_summer")) then //If Tanoa, data is picked from a DB in initVar.sqf, if not, is built on the fly.
         {
         _numCiv = (count (nearestObjects [_pos, ["house"], _size]));
         _roadsProv = _pos nearRoads _size;
@@ -174,10 +174,9 @@ if ((_nombre != "") and (_nombre != "Lakatoro01") and (_nombre != "Galili01") an
             _roadsProv = _pos nearRoads _size;
             //_roads = [];
             {
-            _roadcon = roadsConnectedto _x;
-            if (count _roadcon == 2) then
-                {
-                _roads pushBack (getPosATL _x);
+                _roadcon = roadsConnectedto _x;
+                if (count _roadcon == 2) then {
+                    _roads pushBack (getPosATL _x);
                 };
             } forEach _roadsProv;
             carreteras setVariable [_nombre,_roads];

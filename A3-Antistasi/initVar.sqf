@@ -401,8 +401,8 @@ smallCAmrk = [];
 smallCApos = [];
 bigAttackInProgress = false;
 chopForest = false;
-distanceForAirAttack = 10000;
-distanceForLandAttack = 6000; //if (hayIFA) then {5000} else {3000};
+distanceForAirAttack = 20000;
+distanceForLandAttack = 10000; //if (hayIFA) then {5000} else {3000};
 
 if (worldName == "Tanoa") then {
     roadsMrk = ["road","road_1","road_2","road_3","road_4","road_5","road_6","road_7","road_8","road_9","road_10","road_11","road_12","road_13","road_14","road_15","road_16"];
@@ -506,8 +506,10 @@ prestigeOPFOR = 50;//Initial % support for NATO on each city
 if (not cadetMode) then {prestigeOPFOR = 75};//if you play on vet, this is the number
 // Initial % FIA support on each city
 prestigeBLUFOR = 0;
-cuentaCA = 1200;
+cuentaCA = 1200 + random(1200);
 timeSinceLastAttack = 0;
+cuentaCANonBuenos = 1800 + random(1800);
+nextTick = 0;
 bombRuns = 0;
 cityIsSupportChanging = false;
 resourcesIsChanging = false;

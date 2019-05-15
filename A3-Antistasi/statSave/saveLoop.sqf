@@ -49,6 +49,7 @@ if (!isDedicated) then
  private ["_garrison"];
 	["cuentaCA", cuentaCA] call fn_SaveStat;
 	["timeSinceLastAttack", timeSinceLastAttack] call fn_SaveStat;
+	["cuentaCANonBuenos", cuentaCANonBuenos] call fn_SaveStat;
 	["gameMode", gameMode] call fn_SaveStat;
 	["dificultad", skillMult] call fn_SaveStat;
 	["bombRuns", bombRuns] call fn_SaveStat;

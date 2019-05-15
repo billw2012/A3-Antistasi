@@ -11,8 +11,8 @@ private _powerScaling = 1;
 while {true} do {
 
     //sleep 600;//600
-    nextTick = time + 600;
-    waitUntil {sleep 15; time >= nextTick};
+    nextTick = time + 600; publicVariable "nextTick";
+    waitUntil {sleep 3; time >= nextTick};
     if (isMultiplayer) then {waitUntil {sleep 10; isPlayer theBoss}};
     //_suppBoost = 1 + ({lados getVariable [_x,sideUnknown] == buenos} count puertos);
     private _recAddSDK = 25;//0
@@ -191,17 +191,32 @@ while {true} do {
         };
     } forEach vehicles;
 
-    cuentaCA = 0 max (cuentaCA - 600);
-    timeSinceLastAttack = timeSinceLastAttack + 600;
-    publicVariable "cuentaCA";
-    if ((cuentaCA == 0)/* and (diag_fps > minimoFPS)*/) then {
-        timeSinceLastAttack = 0;
+    cuentaCA = 0 max (cuentaCA - 600); publicVariable "cuentaCA";
+    timeSinceLastAttack = timeSinceLastAttack + 600; publicVariable "timeSinceLastAttack";
+    
+    if (cuentaCA == 0 /* and (diag_fps > minimoFPS)*/) then {
+        diag_log format ["[resourceCheck] Spawning big attack"];
+        timeSinceLastAttack = 0; publicVariable "timeSinceLastAttack";
         [1200, 600, "Spawning big attack"] remoteExec ["A3A_fnc_timingCA", 2];
         if (!bigAttackInProgress) then {
             _script = [] spawn A3A_fnc_ataqueAAF;
             waitUntil {sleep 5; scriptDone _script};
         };
+        cuentaCANonBuenos = cuentaCANonBuenos + 1200 + random(1200); publicVariable "cuentaCANonBuenos";
     };
+    cuentaCANonBuenos = 0 max (cuentaCANonBuenos - 600); publicVariable "cuentaCANonBuenos";
+
+    if (cuentaCANonBuenos == 0) then {
+        diag_log format ["[resourceCheck] Spawning big NATO vs CSAT attack"];
+        if (!bigAttackInProgress) then {
+            _script = [true] spawn A3A_fnc_ataqueAAF;
+            waitUntil {sleep 5; scriptDone _script};
+        };
+        cuentaCANonBuenos = cuentaCANonBuenos + 1800 + random(1800); publicVariable "cuentaCANonBuenos";
+    };
+
+    diag_log format ["[resourceCheck] cuentaCA: %1, timeSinceLastAttack: %2, cuentaCANonBuenos: %3", cuentaCA, timeSinceLastAttack, cuentaCANonBuenos];
+
     sleep 3;
     if ((count antenasMuertas > 0) and (not(["REP"] call BIS_fnc_taskExists))) then {
         _posibles = [];
@@ -219,7 +234,7 @@ while {true} do {
         _cambiado = false;
         {
             _chance = 5;
-            if ((_x in recursos) and (lados getVariable [_x,sideUnknown] == muyMalos)) then {_chace = 20};
+            if ((_x in recursos) and (lados getVariable [_x,sideUnknown] == muyMalos)) then {_chance = 20};
             if (random 100 < _chance) then {
                 _cambiado = true;
                 destroyedCities = destroyedCities - [_x];
